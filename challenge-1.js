@@ -1,18 +1,9 @@
-/* 
-    ? Variables
-*/
-
 let firstName = "John";
 let age = 18;
-let annualIncome = 26000;
+let annualIncome = 25000;
 let creditScore = 625;
 let isCitizen = true;
 let hasCriminalRecord = false;
-
-
-/* 
-    ? Basic Eligibility
-*/
 
 let eligibleForAccount;
 
@@ -24,49 +15,49 @@ if (age >= 18 && isCitizen && !hasCriminalRecord) {
     eligibleForAccount = false;
 };
 
-
-/* 
-    ? Premium Qualification
-*/
-
 let qualifiedForPremium;
 
-if (annualIncome > 100000 && creditScore > 720 && eligibleForAccount) {
-    console.log("Premium Approved");
-    qualifiedForPremium = true;
+if (eligibleForAccount) {
+    if (annualIncome > 100000 && creditScore > 720) {
+        console.log("Premium Approved");
+        qualifiedForPremium = true;
+    } else {
+        console.log("Standard Account Only");
+        qualifiedForPremium = false;
+    };
 } else {
-    console.log("Standard Account Only");
-    qualifiedForPremium = false;
-};
-
-/* 
-    ? Risk Flag
-*/
+    console.log("Account Denied");
+}
 
 let flaggedForRisk;
 
-if (creditScore < 550 || annualIncome < 25000) {
-    console.log("Flag for Review");
-    flaggedForRisk = true;
+if (eligibleForAccount) {
+
+    if (creditScore < 550 || annualIncome < 25000) {
+        console.log("Flag for Review");
+        flaggedForRisk = true;
+    } else {
+        console.log("No Risk Flags");
+        flaggedForRisk = false;
+    }
 } else {
-    console.log("No Risk Flags");
-    flaggedForRisk = false;
+    console.log("Account Denied");
 }
 
-/* 
-    ? Stretch Goals
-*/
+// Stretch Goals
 
 let riskLevel;
 
-if (creditScore < 550) {
-    riskLevel = "High";
-} else if (creditScore > 550 && creditScore < 650) {
-    riskLevel = "Medium";
-} else {
-    riskLevel = "Low";
-}
+if (eligibleForAccount) {
 
+    if (creditScore < 550) {
+        riskLevel = "High";
+    } else if (creditScore > 550 && creditScore < 650) {
+        riskLevel = "Medium";
+    } else {
+        riskLevel = "Low";
+    }
+} 
 console.log(`${firstName} has a credit score of ${creditScore}, so ${firstName} has a risk level of ${riskLevel}.`);
 
 
